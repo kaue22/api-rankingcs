@@ -33,7 +33,7 @@ public class GitHubReadmeGateway {
                 new ParameterizedTypeReference<List<Map<String, Object>>>() {
                 });
         return response.getBody().stream()
-                .filter(file -> file.get("name").toString().endsWith(".md"))
+                .filter(file -> file.get("name").toString().endsWith(".md") && file.get("name").toString().startsWith("standing"))
                 .map(file -> file.get("download_url").toString())
                 .collect(Collectors.toList());
     }

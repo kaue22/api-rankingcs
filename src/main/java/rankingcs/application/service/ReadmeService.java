@@ -1,5 +1,6 @@
 package rankingcs.application.service;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import rankingcs.adapter.gateway.GitHubReadmeGateway;
 import rankingcs.infrastructure.persistence.ReadmeEntity;
@@ -10,7 +11,8 @@ import java.util.List;
 
 @Service
 public class ReadmeService {
-
+    @Value("repourl.valve")
+    private String urlValve;
     private final GitHubReadmeGateway gitHubReadmeGateway;
     private final ReadmeRepository readmeRepository;
 
