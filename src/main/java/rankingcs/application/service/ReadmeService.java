@@ -22,7 +22,7 @@ public class ReadmeService {
     }
 
     public void saveReadmeFiles() {
-        String repoUrl = "https://github.com/ValveSoftware/counter-strike_regional_standings"; // Substitua com a URL correta
+        String repoUrl = "https://github.com/ValveSoftware/counter-strike_regional_standings";f
         List<String> mdFiles = gitHubReadmeGateway.fetchMdFiles(repoUrl);
         for (String mdFileUrl : mdFiles) {
             String content = gitHubReadmeGateway.fetchReadme(mdFileUrl);

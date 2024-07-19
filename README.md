@@ -5,6 +5,6 @@ Standing | Points | Team | Name | Roster
 
 [Link do Repositorio Valve](https://github.com/ValveSoftware/counter-strike_regional_standings)
 
-Técnologias:
-JAVA 17
+Técnologias:<br>
+JAVA 17<br>
 MongoDb
