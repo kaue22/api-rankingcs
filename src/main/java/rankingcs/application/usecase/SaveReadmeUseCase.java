@@ -1,18 +1,18 @@
 package rankingcs.application.usecase;
 
-import rankingcs.application.service.ReadmeService;
+import rankingcs.application.service.ValveReadmeService;
 import org.springframework.stereotype.Service;
 
 @Service
 public class SaveReadmeUseCase {
 
-    private final ReadmeService readmeService;
+    private final ValveReadmeService valveReadmeService;
 
-    public SaveReadmeUseCase(ReadmeService readmeService) {
-        this.readmeService = readmeService;
+    public SaveReadmeUseCase(ValveReadmeService valveReadmeService) {
+        this.valveReadmeService = valveReadmeService;
     }
 
     public void execute() {
-        readmeService.saveReadmeFiles();
+        valveReadmeService.saveReadmeFiles();
     }
 }
