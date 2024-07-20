@@ -11,10 +11,10 @@ Ter o docker instalado.
 
 Rodar docker-compose up -d na raiz.
 
-Rotas:
+**Rotas:
 /api/valve-rankings => Rota Rest
 
-~~~~Scheduler:
+**Scheduler:
 A fazer.
 
 Tecnologias:<br>

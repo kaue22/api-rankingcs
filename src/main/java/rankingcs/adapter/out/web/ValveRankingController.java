@@ -1,11 +1,11 @@
-package rankingcs.adapter.controller;
+package rankingcs.adapter.out.web;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import rankingcs.adapter.controller.dto.RankingDTO;
-import rankingcs.infrastructure.persistence.ValveRankingEntity;
-import rankingcs.infrastructure.persistence.ValveRankingRepository;
+import rankingcs.adapter.out.web.dto.RankingDTO;
+import rankingcs.adapter.out.persistence.entity.ValveRankingEntity;
+import rankingcs.adapter.out.persistence.ValveRankingRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,19 +29,14 @@ public class ValveRankingController {
 
     @GetMapping("/latest")
     public List<RankingDTO> getLatestRankings() {
-        // Fetch the latest rankings, assuming you have logic to determine this
         return rankingRepository.findAll().stream()
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());
     }
 
-    private RankingDTO convertToDTO(ValveRankingEntity entity) {
-        return new RankingDTO(
-                entity.getStanding(),
-                entity.getPoints(),
-                entity.getTeamName(),
-                entity.getRoster(),
-                entity.getModifiedDate()
-        );
+    public RankingDTO convertToDTO(ValveRankingEntity entity) {
+        return new RankingDTO(entity.getStanding(), entity.getPoints(), entity.getTeamName(), entity.getRoster(), entity.getModifiedDate());
     }
+
+
 }

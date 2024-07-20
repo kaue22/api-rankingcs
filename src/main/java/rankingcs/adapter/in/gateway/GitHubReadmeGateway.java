@@ -1,4 +1,4 @@
-package rankingcs.adapter.gateway;
+package rankingcs.adapter.in.gateway;
 
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -24,10 +24,6 @@ public class GitHubReadmeGateway {
     }
 
     public List<String> fetchMdFiles(String repoUrl) {
-        // Implementação para buscar a lista de arquivos .md no repositório
-        // Isso pode incluir chamadas para a API do GitHub para listar os conteúdos do repositório
-        // e filtrar os arquivos que terminam em .md
-        // Por exemplo, você pode usar a API de conteúdo do GitHub para listar os arquivos:
         String apiUrl = repoUrl.replace("https://github.com/", "https://api.github.com/repos/") + "/contents";
         ResponseEntity<List<Map<String, Object>>> response = restTemplate.exchange(apiUrl, HttpMethod.GET, null,
                 new ParameterizedTypeReference<List<Map<String, Object>>>() {

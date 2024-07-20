@@ -1,4 +1,4 @@
-package rankingcs.infrastructure.persistence;
+package rankingcs.adapter.out.persistence.entity;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;

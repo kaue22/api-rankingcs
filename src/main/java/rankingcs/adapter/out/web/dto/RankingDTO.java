@@ -1,4 +1,4 @@
-package rankingcs.adapter.controller.dto;
+package rankingcs.adapter.out.web.dto;
 
 import java.time.LocalDateTime;
 import java.util.List;
