@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/valve-rankings")
-public class ValveRankingController {
+public class ValveRankingController{
 
     private final ValveRankingRepository rankingRepository;
 

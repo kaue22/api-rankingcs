@@ -6,4 +6,5 @@ import rankingcs.adapter.in.persistence.dto.ReadmeEntity;
 
 @Repository
 public interface ReadmeRepository extends MongoRepository<ReadmeEntity, String> {
+//    Boolean exis
 }

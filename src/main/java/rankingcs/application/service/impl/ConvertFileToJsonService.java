@@ -19,7 +19,7 @@ public class ConvertFileToJsonService {
         this.valveRankingRepository = valveRankingRepository;
     }
 
-    void saveRankingFromContent(String content) {
+    public void saveRankingFromContent(String content) {
         String[] lines = content.split("\n");
 
         boolean isParsing = false;
