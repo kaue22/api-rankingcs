@@ -1,10 +1,8 @@
-package rankingcs.application.service;
+package rankingcs.application.service.impl;
 
 import org.springframework.stereotype.Component;
-import rankingcs.adapter.in.gateway.GitHubReadmeGateway;
 import rankingcs.adapter.out.persistence.ValveRankingRepository;
 import rankingcs.adapter.out.persistence.entity.ValveRankingEntity;
-import rankingcs.port.in.SaveReadmePortIn;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -13,29 +11,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Component
-public class ValveReadmeService implements SaveReadmePortIn {
+public class ConvertFileToJsonService {
 
-    private final GitHubReadmeGateway gitHubReadmeGateway;
     private final ValveRankingRepository valveRankingRepository;
 
-    public ValveReadmeService(GitHubReadmeGateway gitHubReadmeGateway, ValveRankingRepository valveRankingRepository) {
-        this.gitHubReadmeGateway = gitHubReadmeGateway;
+    public ConvertFileToJsonService(final ValveRankingRepository valveRankingRepository) {
         this.valveRankingRepository = valveRankingRepository;
     }
 
-    @Override
-    public String saveReadmeFiles() {
-        String repoUrl = "https://github.com/ValveSoftware/counter-strike_regional_standings";
-        List<String> mdFiles = gitHubReadmeGateway.fetchMdFiles(repoUrl);
-        for (String mdFileUrl : mdFiles) {
-            String content = gitHubReadmeGateway.fetchReadme(mdFileUrl);
-            saveRankingFromContent(content, mdFileUrl);
-        }
-        return "N-Ok";
-    }
-
-
-    private void saveRankingFromContent(String content, String detailsLink) {
+    void saveRankingFromContent(String content) {
         String[] lines = content.split("\n");
 
         boolean isParsing = false;
@@ -87,4 +71,5 @@ public class ValveReadmeService implements SaveReadmePortIn {
         }
         return null;
     }
+
 }

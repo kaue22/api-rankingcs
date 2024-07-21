@@ -15,7 +15,7 @@ public class ReadmeController {
 
     @GetMapping("/readme")
     public String saveReadme() {
-        this.saveReadmePortIn.saveReadmeFiles();
+        this.saveReadmePortIn.processReadmeFiles();
         return "OK";
     }
 }
