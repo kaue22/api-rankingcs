@@ -10,11 +10,10 @@ public class ReadmeEntity {
     private String id;
     private String content;
     private String creationDate;
+    private String date;
 
     public ReadmeEntity() {
     }
-
-
 
     public ReadmeEntity(String content) {
         this.content = content;
@@ -42,5 +41,13 @@ public class ReadmeEntity {
 
     public void setCreationDate(String creationDate) {
         this.creationDate = creationDate;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

@@ -6,5 +6,5 @@ import rankingcs.adapter.in.persistence.entity.ReadmeEntity;
 
 @Repository
 public interface ReadmeRepository extends MongoRepository<ReadmeEntity, String> {
-    Boolean existsByDate(String date);
+    boolean existsByCreationDate(String creationDate);
 }

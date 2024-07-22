@@ -2,5 +2,5 @@ package rankingcs.port.in;
 
 public interface SaveRankingPortIn {
 
-    void lastDateUpdate(String date);
+    boolean lastDateUpdate(String date);
 }

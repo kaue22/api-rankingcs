@@ -2,5 +2,5 @@ spring:
   data:
     mongodb:
       uri: mongodb://root:root@localhost:27017/api-rankingcs?authSource=admin
-repourl:
+routes:
   valve: https://github.com/ValveSoftware/counter-strike_regional_standings
