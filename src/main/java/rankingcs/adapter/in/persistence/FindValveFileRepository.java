@@ -20,8 +20,7 @@ public class FindValveFileRepository implements SaveRankingPortIn {
 //    }
 
     public void lastDateUpdate(String date) {
-
-        readmeRepository.findAll();
+        readmeRepository.existsByDate(date);
 //        this.saveRankingPortIn.lastDateUpdate(content);
     }
 }

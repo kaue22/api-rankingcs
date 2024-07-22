@@ -1,9 +1,7 @@
-package rankingcs.adapter.in.persistence.dto;
+package rankingcs.adapter.in.persistence.entity;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.time.LocalDateTime;
 
 @Document(collection = "readmes")
 public class ReadmeEntity {
@@ -11,11 +9,12 @@ public class ReadmeEntity {
     @Id
     private String id;
     private String content;
-    private LocalDateTime creationDate;
-    private LocalDateTime modifiedDate;
+    private String creationDate;
 
     public ReadmeEntity() {
     }
+
+
 
     public ReadmeEntity(String content) {
         this.content = content;
@@ -37,19 +36,11 @@ public class ReadmeEntity {
         this.content = content;
     }
 
-    public LocalDateTime getCreationDate() {
+    public String getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(LocalDateTime creationDate) {
+    public void setCreationDate(String creationDate) {
         this.creationDate = creationDate;
-    }
-
-    public LocalDateTime getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(LocalDateTime modifiedDate) {
-        this.modifiedDate = modifiedDate;
     }
 }
