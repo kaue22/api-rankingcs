@@ -9,7 +9,12 @@ public class ValveRankingDomain {
     private List<String> roster;
     private String detailsLink;
 
-    public ValveRankingDomain(int standing, int points, String teamName, List<String> roster, String details) {
+    public ValveRankingDomain(int standing, int points, String teamName, List<String> roster, String detailsLink) {
+        this.standing = standing;
+        this.points = points;
+        this.teamName = teamName;
+        this.roster = roster;
+        this.detailsLink = detailsLink;
     }
 
     public int getStanding() {

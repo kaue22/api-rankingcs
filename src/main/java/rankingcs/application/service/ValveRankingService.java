@@ -3,7 +3,8 @@ package rankingcs.application.service;
 import org.springframework.stereotype.Component;
 import rankingcs.adapter.in.persistence.extractorvalve.ExtractorValveRepository;
 import rankingcs.application.domain.ReadmeDomain;
-import rankingcs.application.service.impl.ConvertFileToJsonService;
+import rankingcs.application.domain.ValveRankingDomain;
+import rankingcs.application.service.mapper.ConvertFileToJsonMapper;
 import rankingcs.port.in.SaveReadmePortIn;
 import rankingcs.port.out.SaveRankingPortOut;
 
@@ -14,23 +15,25 @@ public class ValveRankingService implements SaveReadmePortIn {
 
     private final SaveRankingPortOut saveRankingPortOut;
     private final ExtractorValveRepository extractorValveRepository;
-    private final ConvertFileToJsonService convertFileToJsonService;
 
-    public ValveRankingService(SaveRankingPortOut saveRankingPortOut, ExtractorValveRepository extractorValveRepository, ConvertFileToJsonService convertFileToJsonService) {
+    public ValveRankingService(SaveRankingPortOut saveRankingPortOut, ExtractorValveRepository extractorValveRepository) {
         this.saveRankingPortOut = saveRankingPortOut;
         this.extractorValveRepository = extractorValveRepository;
-        this.convertFileToJsonService = convertFileToJsonService;
     }
 
 
     @Override
     public String processReadmeFiles() {
         this.saveRankingPortOut.saveReadmeFiles();
-        List<ReadmeDomain> readmeDomain = this.extractorValveRepository.findByContextValve();
-        for (ReadmeDomain readmeDomain1 : readmeDomain) {
-            this.convertFileToJsonService.saveRankingFromContent(readmeDomain1.getContent());
-            System.out.println(readmeDomain.get(0).getContent());
+        List<ReadmeDomain> readmeDomainList = this.extractorValveRepository.findByContextValve();
+
+        for (ReadmeDomain rd : readmeDomainList) {
+            List<ValveRankingDomain> rankingDomains = ConvertFileToJsonMapper.INSTANCE.convertContentFromString(rd);
+            for (ValveRankingDomain domain : rankingDomains) {
+                // Processar o objeto ValveRankingDomain conforme necessário
+                System.out.println(domain.getTeamName());
+            }
         }
-        return "OK";
+        return "";
     }
 }
