@@ -50,7 +50,7 @@ public interface ConvertFileToJsonMapper {
                     try {
                         int standing = Integer.parseInt(columns[1].trim());
                         int points = Integer.parseInt(columns[2].trim());
-9                        String teamName = columns[3].trim();
+                        String teamName = columns[3].trim();
                         List<String> roster = Arrays.asList(columns[4].trim().split(",\\s*"));
                         String detailsLink = columns[5];
 
