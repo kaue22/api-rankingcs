@@ -1,4 +1,4 @@
-package rankingcs.adapter.in.persistence.entity;
+package rankingcs.adapter.in.persistence.valverepository.entity;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

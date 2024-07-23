@@ -1,9 +1,9 @@
-package rankingcs.domain;
+package rankingcs.application.domain;
 
-public class Readme {
+public class ReadmeDomain {
     private String content;
 
-    public Readme(String content) {
+    public ReadmeDomain(String content) {
         this.content = content;
     }
 

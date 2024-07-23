@@ -1,4 +1,4 @@
-package rankingcs.adapter.in.persistence.dto;
+package rankingcs.adapter.in.persistence.valverepository.dto;
 
 import org.springframework.data.annotation.Id;
 

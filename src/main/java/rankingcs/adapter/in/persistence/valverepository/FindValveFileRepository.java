@@ -1,8 +1,7 @@
-package rankingcs.adapter.in.persistence;
+package rankingcs.adapter.in.persistence.valverepository;
 
 import org.springframework.stereotype.Component;
-import rankingcs.adapter.in.persistence.repository.ReadmeRepository;
-import rankingcs.port.in.SaveRankingPortIn;
+import rankingcs.adapter.in.persistence.valverepository.repository.ReadmeRepository;
 
 @Component
 public class FindValveFileRepository {

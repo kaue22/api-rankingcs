@@ -1,8 +1,8 @@
 package rankingcs.application.service.impl;
 
 import org.springframework.stereotype.Component;
-import rankingcs.adapter.out.persistence.ValveRankingRepository;
-import rankingcs.adapter.out.persistence.entity.ValveRankingEntity;
+import rankingcs.adapter.in.persistence.valverepository.entity.ValveRankingEntity;
+import rankingcs.application.domain.ValveRankingDomain;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -12,12 +12,6 @@ import java.util.regex.Pattern;
 
 @Component
 public class ConvertFileToJsonService {
-
-    private final ValveRankingRepository valveRankingRepository;
-
-    public ConvertFileToJsonService(final ValveRankingRepository valveRankingRepository) {
-        this.valveRankingRepository = valveRankingRepository;
-    }
 
     public void saveRankingFromContent(String content) {
         String[] lines = content.split("\n");
@@ -49,11 +43,9 @@ public class ConvertFileToJsonService {
                         List<String> roster = Arrays.asList(columns[4].trim().split(",\\s*"));
                         String details = extractDetailsLink(columns[5]);
 
-                        ValveRankingEntity valveRankingEntity = new ValveRankingEntity(standing, points, teamName, roster, details);
-                        valveRankingEntity.setCreatedDate(LocalDateTime.now());
-                        valveRankingEntity.setModifiedDate(LocalDateTime.now());
-
-                        valveRankingRepository.save(valveRankingEntity);
+                        ValveRankingDomain valveRankingDomain = new ValveRankingDomain(standing, points, teamName, roster, details);
+                        System.out.println(valveRankingDomain);
+                        // valveRankingRepository.save(valveRankingEntity);
                     } catch (NumberFormatException e) {
                         // Handle parse error
                         System.err.println("Error parsing line: " + line);

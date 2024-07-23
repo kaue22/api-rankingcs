@@ -1,10 +1,10 @@
-package rankingcs.adapter.in.persistence;
+package rankingcs.adapter.in.persistence.valverepository;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import rankingcs.adapter.in.gateway.GitHubReadmeGateway;
-import rankingcs.adapter.in.persistence.entity.ReadmeEntity;
-import rankingcs.adapter.in.persistence.repository.ReadmeRepository;
+import rankingcs.adapter.in.persistence.valverepository.entity.ReadmeEntity;
+import rankingcs.adapter.in.persistence.valverepository.repository.ReadmeRepository;
 import rankingcs.adapter.in.utils.DateValidator;
 import rankingcs.port.out.SaveRankingPortOut;
 
