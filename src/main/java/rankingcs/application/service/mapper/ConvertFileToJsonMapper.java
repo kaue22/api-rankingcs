@@ -64,13 +64,4 @@ public interface ConvertFileToJsonMapper {
         }
         return rankings;
     }
-
-//    default String extractDetailsLink(String column) {
-//        Pattern pattern = Pattern.compile("\\[details\\]\\(([^)]+)\\)");
-//        Matcher matcher = pattern.matcher(column);
-//        if (matcher.find()) {
-//            return matcher.group(1);
-//        }
-//        return null;
-//    }
 }
