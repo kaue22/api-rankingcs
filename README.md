@@ -9,13 +9,18 @@ Standing | Points | Team | Name | Roster
 
 Ter o docker instalado.
 
-Rodar docker-compose up -d na raiz.
-
-**Rotas:
-/api/valve-rankings => Rota Rest
+Rodar docker-compose up -d para subir mongodb.
 
 **Scheduler:
-A fazer.
+Rodando como cron,atualmente configurado para rodar ao estartar.
+
+**Rotas:
+http://localhost:8080/api/ranking/valve => Rota Rest
+![img.png](img.png)
+
+Será implementado futuramente token Bearer.
+
+
 
 Tecnologias:<br>
 JAVA 17<br>
