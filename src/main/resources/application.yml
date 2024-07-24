@@ -1,6 +1,19 @@
 spring:
+  logging:
+    level:
+      org.springframework.web: DEBUG
+      org.springframework.http: DEBUG
+  cloud:
+    openfeign:
+      enabled: true
   data:
     mongodb:
       uri: mongodb://root:root@localhost:27017/api-rankingcs?authSource=admin
 routes:
   valve: https://github.com/ValveSoftware/counter-strike_regional_standings
+
+# application.yml
+api:
+  valve-ranking:
+    url: http://localhost:8080/
+    token: Basic 12345

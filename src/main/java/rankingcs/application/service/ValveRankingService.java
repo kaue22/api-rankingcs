@@ -7,6 +7,7 @@ import rankingcs.application.domain.ValveRankingDomain;
 import rankingcs.application.service.mapper.ConvertFileToJsonMapper;
 import rankingcs.port.in.SaveReadmePortIn;
 import rankingcs.port.out.SaveRankingPortOut;
+import rankingcs.port.out.ValveSendPortOut;
 
 import java.util.List;
 
@@ -15,10 +16,12 @@ public class ValveRankingService implements SaveReadmePortIn {
 
     private final SaveRankingPortOut saveRankingPortOut;
     private final ExtractorValveRepository extractorValveRepository;
+    private final ValveSendPortOut valveSendPortOut;
 
-    public ValveRankingService(SaveRankingPortOut saveRankingPortOut, ExtractorValveRepository extractorValveRepository) {
+    public ValveRankingService(SaveRankingPortOut saveRankingPortOut, ExtractorValveRepository extractorValveRepository, ValveSendPortOut valveSendPortOut) {
         this.saveRankingPortOut = saveRankingPortOut;
         this.extractorValveRepository = extractorValveRepository;
+        this.valveSendPortOut = valveSendPortOut;
     }
 
 
@@ -29,9 +32,9 @@ public class ValveRankingService implements SaveReadmePortIn {
 
         for (ReadmeDomain rd : readmeDomainList) {
             List<ValveRankingDomain> rankingDomains = ConvertFileToJsonMapper.INSTANCE.convertContentFromString(rd);
-            for (ValveRankingDomain domain : rankingDomains) {
-                // Processar o objeto ValveRankingDomain conforme necessário
-                System.out.println(domain.getTeamName());
+            for (ValveRankingDomain domain : rankingDomains) {;
+                // Enviar o ranking processado
+                valveSendPortOut.processReadmeFiles(rankingDomains);
             }
         }
         return "";
