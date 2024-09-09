@@ -37,7 +37,6 @@ public class SaveValveFileRepository implements SaveRankingPortOut {
     public void saveReadmeFiles() {
         List<String> mdFiles = gitHubReadmeGateway.fetchMdFiles(repoUrl);
 
-        // Process files in parallel and collect entities to be saved
         List<ReadmeEntity> readmeEntities = mdFiles.parallelStream()
                 .map(mdFileUrl -> {
                     String content = gitHubReadmeGateway.fetchReadme(mdFileUrl);
@@ -57,7 +56,6 @@ public class SaveValveFileRepository implements SaveRankingPortOut {
                 .filter(readmeEntity -> readmeEntity != null) // Filter out nulls
                 .collect(Collectors.toList());
 
-        // Batch insert entities
         readmeRepository.saveAll(readmeEntities);
     }
 }
