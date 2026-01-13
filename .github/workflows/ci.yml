@@ -4,8 +4,9 @@ on:
   pull_request:
     branches: [ "main" ]
 
+# Permissões: O 'GITHUB_TOKEN' precisa de poder de escrita para comentar
 permissions:
-  pull-requests: write # Permite comentar
+  pull-requests: write
   contents: read
 
 jobs:
@@ -14,15 +15,25 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # PASSO 1: Gera o conteúdo do texto
       - name: Gerar Mensagem
         run: |
-          chmod +x ./.github/scripts/generate_msg.sh
+          chmod +x .github/scripts/generate_msg.sh
+          # Roda o script e salva a saída no arquivo pr_message.md
           ./.github/scripts/generate_msg.sh > pr_message.md
+          
+          # Debug: Mostra no log o que foi gerado
+          echo "=== Conteúdo da Mensagem ==="
+          cat pr_message.md
 
+      # PASSO 2: Envia para o GitHub via API
       - name: Comentar no PR (Via cURL)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          chmod +x ./.github/scripts/comment.sh
-          # Passa o número do PR e o arquivo de mensagem
-          ./.github/scripts/generate_msg.sh "${{ github.event.pull_request.number }}" "pr_message.md"
+          chmod +x .github/scripts/comment.sh
+          
+          # CORREÇÃO AQUI: Chamamos 'comment.sh', não 'generate_msg.sh'
+          # Argumento 1: Número do PR
+          # Argumento 2: Arquivo com a mensagem
+          ./.github/scripts/comment.sh "${{ github.event.pull_request.number }}" "pr_message.md"
