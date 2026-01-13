@@ -12,7 +12,6 @@ public class ScheduledTasks {
     public ScheduledTasks(SaveReadmePortIn saveReadmePortIn) {
         this.saveReadmePortIn = saveReadmePortIn;
     }
-
     @Scheduled(cron = "* * * * * *")
     public void saveReadme() {
         this.saveReadmePortIn.processReadmeFiles();

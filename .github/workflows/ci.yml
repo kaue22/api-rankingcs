@@ -1,39 +1,38 @@
-name: CI Manual (No External Actions)
+name: CI Manual (Full Report)
 
 on:
   pull_request:
     branches: [ "main" ]
 
-# Permissões: O 'GITHUB_TOKEN' precisa de poder de escrita para comentar
 permissions:
   pull-requests: write
   contents: read
+
+# DEFINE O FUSO HORÁRIO GLOBALMENTE PARA TODO O WORKFLOW
+env:
+  TZ: 'America/Sao_Paulo'
 
 jobs:
   report-branches:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Importante: Baixa histórico completo para ver merges antigos
+          fetch-depth: 0
 
-      # PASSO 1: Gera o conteúdo do texto
-      - name: Gerar Mensagem
+      - name: Gerar Relatório Completo
         run: |
-          chmod +x .github/scripts/generate_msg.sh
-          # Roda o script e salva a saída no arquivo pr_message.md
-          ./.github/scripts/generate_msg.sh > pr_message.md
+          chmod +x .github/scripts/generate_report.sh
+          # Passa as variáveis necessárias
+          ./.github/scripts/generate_report.sh > pr_message.md
           
-          # Debug: Mostra no log o que foi gerado
-          echo "=== Conteúdo da Mensagem ==="
+          echo "=== Debug: Conteúdo Gerado ==="
           cat pr_message.md
 
-      # PASSO 2: Envia para o GitHub via API
-      - name: Comentar no PR (Via cURL)
+      - name: Comentar no PR
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           chmod +x .github/scripts/comment.sh
-          
-          # CORREÇÃO AQUI: Chamamos 'comment.sh', não 'generate_msg.sh'
-          # Argumento 1: Número do PR
-          # Argumento 2: Arquivo com a mensagem
           ./.github/scripts/comment.sh "${{ github.event.pull_request.number }}" "pr_message.md"

@@ -22,7 +22,6 @@ public class GitHubReadmeGateway {
     public String fetchReadme(String url) {
         return restTemplate.getForObject(url, String.class);
     }
-
     public List<String> fetchMdFiles(String repoUrl) {
         String apiUrl = repoUrl.replace("https://github.com/", "https://api.github.com/repos/") + "/contents";
         ResponseEntity<List<Map<String, Object>>> response = restTemplate.exchange(apiUrl, HttpMethod.GET, null,
