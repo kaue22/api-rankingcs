@@ -17,7 +17,7 @@ jobs:
       - name: Gerar Mensagem
         run: |
           chmod +x scripts/generate_msg.sh
-          ./scripts/generate_msg.sh > pr_message.md
+          ./.github/scripts/generate_msg.sh > pr_message.md
 
       - name: Comentar no PR (Via cURL)
         env:
