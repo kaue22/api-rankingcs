@@ -1,13 +1,28 @@
+name: CI Manual (No External Actions)
+
 on:
   pull_request:
+    branches: [ "main" ]
+
+permissions:
+  pull-requests: write # Permite comentar
+  contents: read
 
 jobs:
-  build:
+  report-branches:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Mostrar branches do PR
-        run: |
-          chmod +x scripts/pr-branches.sh
-          scripts/pr-branches.sh
 
+      - name: Gerar Mensagem
+        run: |
+          chmod +x scripts/generate_msg.sh
+          ./scripts/generate_msg.sh > pr_message.md
+
+      - name: Comentar no PR (Via cURL)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          chmod +x scripts/comment.sh
+          # Passa o número do PR e o arquivo de mensagem
+          ./scripts/comment.sh "${{ github.event.pull_request.number }}" "pr_message.md"
