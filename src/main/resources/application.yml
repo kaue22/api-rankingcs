@@ -13,6 +13,7 @@ routes:
   valve: https://github.com/ValveSoftware/counter-strike_regional_standings
 
 # application.yml
+#APENAS PARA TESTES
 api:
   valve-ranking:
     url: http://localhost:8080/
