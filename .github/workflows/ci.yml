@@ -16,13 +16,13 @@ jobs:
 
       - name: Gerar Mensagem
         run: |
-          chmod +x scripts/generate_msg.sh
+          chmod +x ./.github/scripts/generate_msg.sh
           ./.github/scripts/generate_msg.sh > pr_message.md
 
       - name: Comentar no PR (Via cURL)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          chmod +x scripts/comment.sh
+          chmod +x ./.github/scripts/comment.sh
           # Passa o número do PR e o arquivo de mensagem
           ./.github/scripts/generate_msg.sh "${{ github.event.pull_request.number }}" "pr_message.md"
