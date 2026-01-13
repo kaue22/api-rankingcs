@@ -17,7 +17,7 @@ import rankingcs.port.out.ValveSendPortOut;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
+//comentário para merge
 @RestController
 @RequestMapping("/api/ranking")
 public class ValveRankingController implements ValveSendPortOut {
