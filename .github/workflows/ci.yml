@@ -25,4 +25,4 @@ jobs:
         run: |
           chmod +x scripts/comment.sh
           # Passa o número do PR e o arquivo de mensagem
-          ./scripts/comment.sh "${{ github.event.pull_request.number }}" "pr_message.md"
+          ./.github/scripts/generate_msg.sh "${{ github.event.pull_request.number }}" "pr_message.md"
